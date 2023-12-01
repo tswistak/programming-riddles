@@ -1,0 +1,23 @@
+{
+  "name": "advent-of-code-2023",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier . --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tswistak/advent-of-code-2023.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tswistak/advent-of-code-2023/issues"
+  },
+  "homepage": "https://github.com/tswistak/advent-of-code-2023#readme",
+  "dependencies": {
+    "prettier": "^3.1.0"
+  }
+}
