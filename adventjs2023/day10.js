@@ -15,3 +15,40 @@ function createChristmasTree(ornaments, height) {
   }
   return result.join("\n") + `\n${" ".repeat(height - 1)}|\n`;
 }
+
+/*
+Test: createChristmasTree("x", 3)
+
+Expected:
+"  x
+ x x
+x x x
+  |
+"
+
+Actual:
+"  x
+ x x
+x x x
+  |
+"
+
+Test #03
+
+Test: createChristmasTree("xo", 4)
+
+Expected:
+"   x
+  o x
+ o x o
+x o x o
+   |
+"
+
+Actual:
+"   x
+  o x
+ o x o
+x o x o
+   |
+"*/

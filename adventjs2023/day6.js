@@ -1,19 +1,4 @@
 function maxDistance(movements) {
-  // trial 1 - test 11 fails
-  // let distance = 0;
-  // for (let i = 0; i < movements.length; i++) {
-  //   const move = movements[i];
-  //   if (move === ">") {
-  //     distance++;
-  //   } else if (move === "<") {
-  //     distance--;
-  //   } else if (move === "*") {
-  //     distance += distance >= 0 ? 1 : -1;
-  //   }
-  // }
-  // return Math.abs(distance);
-
-  // trial 2
   let rightMoves = 0;
   let leftMoves = 0;
   let starMoves = 0;
@@ -29,3 +14,15 @@ function maxDistance(movements) {
   }
   return Math.abs(rightMoves - leftMoves) + starMoves;
 }
+
+const movements = ">>*<";
+const result = maxDistance(movements);
+console.log(result); // -> 2
+
+const movements2 = "<<<>";
+const result2 = maxDistance(movements2);
+console.log(result2); // -> 2
+
+const movements3 = ">***>";
+const result3 = maxDistance(movements3);
+console.log(result3); // -> 5

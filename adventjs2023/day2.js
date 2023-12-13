@@ -15,3 +15,18 @@ function manufacture(gifts, materials) {
   }
   return result;
 }
+
+const gifts = ["tren", "oso", "pelota"];
+const materials = "tronesa";
+
+manufacture(gifts, materials); // ["tren", "oso"]
+
+const gifts1 = ["juego", "puzzle"];
+const materials1 = "jlepuz";
+
+manufacture(gifts1, materials1); // ["puzzle"]
+
+const gifts2 = ["libro", "ps5"];
+const materials2 = "psli";
+
+manufacture(gifts2, materials2); // []

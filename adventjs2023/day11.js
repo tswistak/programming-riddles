@@ -26,3 +26,10 @@ function getIndexsForPalindrome(word) {
 
   return null;
 }
+
+getIndexsForPalindrome("anna"); // []
+getIndexsForPalindrome("abab"); // [0, 1]
+getIndexsForPalindrome("abac"); // null
+getIndexsForPalindrome("aaaaaaaa"); // []
+getIndexsForPalindrome("aaababa"); // [1, 3]
+getIndexsForPalindrome("caababa"); // null

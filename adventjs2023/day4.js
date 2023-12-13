@@ -1,19 +1,4 @@
 function decode(message) {
-  // trial 1 - fails tests 07 and 08
-  // const toDecode = message.match(/(\(\w*\))/g);
-  // let result = message;
-  // if (toDecode) {
-  //   for (const match of toDecode) {
-  //     result = result.replace(
-  //       match,
-  //       match.replace("(", "").replace(")", "").split("").reverse().join("")
-  //     );
-  //   }
-  //   return decode(result);
-  // }
-  // return message;
-
-  // trial 2
   const toDecode = message.match(/\(([^()]*)\)/g);
   if (toDecode) {
     for (const match of toDecode) {
@@ -24,3 +9,16 @@ function decode(message) {
   }
   return message;
 }
+
+const a = decode("hola (odnum)");
+console.log(a); // hola mundo
+
+const b = decode("(olleh) (dlrow)!");
+console.log(b); // hello world!
+
+const c = decode("sa(u(cla)atn)s");
+console.log(c); // santaclaus
+
+// Step by step:
+// 1. Reverse the nested -> sa(ualcatn)s
+// 2. Reverse the remaining one -> santaclaus

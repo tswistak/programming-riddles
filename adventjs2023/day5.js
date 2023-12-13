@@ -25,3 +25,22 @@ function cyberReindeer(road, time) {
   }
   return result;
 }
+
+const road = "S..|...|..";
+const time = 10; // units of time
+const result = cyberReindeer(road, time);
+
+/* -> result:
+[
+  'S..|...|..', // initial state
+  '.S.|...|..', // sled advances on the road
+  '..S|...|..', // sled advances on the road
+  '..S|...|..', // sled stops at the barrier
+  '..S|...|..', // sled stops at the barrier
+  '...S...*..', // barrier opens, sled advances
+  '...*S..*..', // sled advances on the road
+  '...*.S.*..', // sled advances on the road
+  '...*..S*..', // sled advances on the road
+  '...*...S..', // passes through the open barrier
+]
+*/
