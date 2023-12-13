@@ -46,9 +46,8 @@ function getReflectionRows(img) {
       reflectedJ = j + 1;
       j--;
     } else if (j !== img.length - 1) {
-      reflectedI = null;
-      reflectedJ = null;
-      break;
+      i--;
+      j++;
     }
   }
   // moving from bottom to match the top if didn't found
@@ -64,9 +63,8 @@ function getReflectionRows(img) {
         reflectedJ = j + 1;
         i++;
       } else if (i > 0) {
-        reflectedI = null;
-        reflectedJ = null;
-        break;
+        i--;
+        j++;
       }
     }
   }
@@ -83,9 +81,9 @@ function part1(data) {
   const images = parseData(data);
   let result = 0;
   for (const img of images) {
+    const horizontal = getReflectionRows(img);
     const rotated = rotate(img);
     const vertical = getReflectionRows(rotated);
-    const horizontal = getReflectionRows(img);
     if (horizontal) {
       result += horizontal[0] * 100;
     }
