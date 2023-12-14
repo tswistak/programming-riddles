@@ -34,6 +34,22 @@ function rotate(matrix) {
   return rotatedMatrix;
 }
 
+function rotateLeft(matrix) {
+  const rows = matrix.length;
+  const columns = matrix[0].length;
+  const rotatedMatrix = [];
+
+  for (let col = columns - 1; col >= 0; col--) {
+    const newRow = [];
+    for (let row = 0; row < rows; row++) {
+      newRow.push(matrix[row][col]);
+    }
+    rotatedMatrix.push(newRow);
+  }
+
+  return rotatedMatrix;
+}
+
 function getReflectionRows(img) {
   let reflectedI = null;
   let reflectedJ = null;
@@ -77,6 +93,25 @@ function getReflectionRows(img) {
   return [reflectedI, reflectedJ];
 }
 
+function onlyOneDiff(line1, line2) {
+  let sum = 0;
+  for (let i = 0; i < line1.length; i++) {
+    if (line1[i] !== line2[i]) {
+      sum++;
+      if (sum > 1) {
+        return false;
+      }
+    }
+  }
+  return sum === 1;
+}
+
+function findVariants(img) {
+  const variants = [];
+  // TODO
+  return variants;
+}
+
 function part1(data) {
   const images = parseData(data);
   let result = 0;
@@ -95,7 +130,24 @@ function part1(data) {
 }
 
 function part2(data) {
-  //
+  const images = parseData(data);
+  let result = 0;
+  for (const orgImg of images) {
+    const variantsHorizontal = findVariants(orgImg);
+    const variantsVertical = findVariants(rotate(orgImg)).map(rotateLeft);
+    for (const img of [...variantsHorizontal, ...variantsVertical]) {
+      const horizontal = getReflectionRows(img);
+      const rotated = rotate(img);
+      const vertical = getReflectionRows(rotated);
+      if (horizontal) {
+        result += horizontal[0] * 100;
+      }
+      if (vertical) {
+        result += vertical[0];
+      }
+    }
+  }
+  return result;
 }
 
 const testData = fs
@@ -106,6 +158,7 @@ const realData = fs
   .split("\n");
 
 console.log(part1(testData));
-console.log(part1(realData)); // wrong result
+console.log(part1(realData));
+// TODO below
 console.log(part2(testData));
 console.log(part2(realData));
