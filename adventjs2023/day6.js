@@ -15,6 +15,22 @@ function maxDistance(movements) {
   return Math.abs(rightMoves - leftMoves) + starMoves;
 }
 
+// alternative, slightly faster
+function maxDistance(movements) {
+  let netRightMoves = 0;
+  let starMoves = 0;
+  for (const move of movements) {
+    if (move === ">") {
+      netRightMoves++;
+    } else if (move === "<") {
+      netRightMoves--;
+    } else if (move === "*") {
+      starMoves++;
+    }
+  }
+  return Math.abs(netRightMoves) + starMoves;
+}
+
 const movements = ">>*<";
 const result = maxDistance(movements);
 console.log(result); // -> 2

@@ -15,6 +15,25 @@ function maxGifts(houses) {
   return dp[n - 1];
 }
 
+// alternative
+function maxGifts(houses) {
+  let n = houses.length;
+  if (n === 1) {
+    return houses[0];
+  }
+
+  let prev = houses[0];
+  let curr = Math.max(houses[0], houses[1]);
+
+  for (let i = 2; i < n; i++) {
+    let next = Math.max(curr, prev + houses[i]);
+    prev = curr;
+    curr = next;
+  }
+
+  return curr;
+}
+
 console.log(maxGifts([2, 4, 2])); // 4 (4)
 console.log(maxGifts([5, 1, 1, 5])); // 10 (5 + 5)
 console.log(maxGifts([4, 1, 1, 4, 2, 1])); // 9 (4 + 4 + 1)

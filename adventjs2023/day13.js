@@ -17,6 +17,26 @@ function calculateTime(deliveries) {
   )}:${String(seconds).padStart(2, "0")}`;
 }
 
+// alternative
+function calculateTime(deliveries) {
+  const secondsInHour = 3600;
+  const totalWorkingSeconds = 7 * secondsInHour;
+  const totalDeliverySeconds = deliveries.reduce((acc, time) => {
+    const [hours, minutes, seconds] = time.split(":").map(Number);
+    return acc + hours * secondsInHour + minutes * 60 + seconds;
+  }, 0);
+  const remainingSeconds = totalWorkingSeconds - totalDeliverySeconds;
+  const sign = remainingSeconds > 0 ? "-" : "";
+  const absRemainingSeconds = Math.abs(remainingSeconds);
+  const hours = Math.floor(absRemainingSeconds / secondsInHour);
+  const minutes = Math.floor((absRemainingSeconds % secondsInHour) / 60);
+  const seconds = absRemainingSeconds % 60;
+  return `${sign}${String(hours).padStart(2, "0")}:${String(minutes).padStart(
+    2,
+    "0",
+  )}:${String(seconds).padStart(2, "0")}`;
+}
+
 calculateTime(["00:10:00", "01:00:00", "03:30:00"]);
 // '-02:20:00'
 

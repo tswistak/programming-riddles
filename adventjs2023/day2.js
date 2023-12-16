@@ -16,6 +16,14 @@ function manufacture(gifts, materials) {
   return result;
 }
 
+// alternative
+function manufacture(gifts, materials) {
+  const availableLetters = new Set(materials);
+  return gifts.filter((gift) =>
+    gift.split("").every((letter) => availableLetters.has(letter)),
+  );
+}
+
 const gifts = ["tren", "oso", "pelota"];
 const materials = "tronesa";
 

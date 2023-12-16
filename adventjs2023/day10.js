@@ -16,6 +16,25 @@ function createChristmasTree(ornaments, height) {
   return result.join("\n") + `\n${" ".repeat(height - 1)}|\n`;
 }
 
+// alternative
+function createChristmasTree(ornaments, height) {
+  let ornamentCounter = 0;
+  let result = [];
+  for (let i = 0; i < height; i++) {
+    let line = "";
+    const leftPad = Math.max(height - 1 - i, 0);
+    line += " ".repeat(leftPad);
+    for (let j = 0; j <= i; j++) {
+      line +=
+        (j > 0 ? " " : "") + ornaments[ornamentCounter % ornaments.length];
+      ornamentCounter++;
+    }
+    result.push(line);
+  }
+  result.push(`${" ".repeat(height - 1)}|`, "");
+  return result.join("\n");
+}
+
 /*
 Test: createChristmasTree("x", 3)
 

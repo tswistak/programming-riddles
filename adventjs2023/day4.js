@@ -10,6 +10,25 @@ function decode(message) {
   return message;
 }
 
+// iterative version, no regex
+function decode(message) {
+  let stack = [];
+  let currentString = "";
+
+  for (const char of message) {
+    if (char === "(") {
+      stack.push(currentString);
+      currentString = "";
+    } else if (char === ")") {
+      currentString = stack.pop() + currentString.split("").reverse().join("");
+    } else {
+      currentString += char;
+    }
+  }
+
+  return currentString;
+}
+
 const a = decode("hola (odnum)");
 console.log(a); // hola mundo
 
