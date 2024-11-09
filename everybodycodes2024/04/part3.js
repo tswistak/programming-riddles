@@ -9,9 +9,6 @@ const nails = fs
 
 nails.sort((a, b) => a - b);
 const median = nails[Math.trunc(nails.length / 2)];
-const strikes = nails.reduce(
-  (prev, curr, i) => prev + Math.abs(curr - median),
-  0,
-);
+const strikes = nails.reduce((prev, curr) => prev + Math.abs(curr - median), 0);
 
 console.log(strikes);
