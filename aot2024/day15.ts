@@ -1,4 +1,32 @@
-type GetRoute<T extends string> = unknown;
+type GetRoute<T extends string> = ExtractRoute<T, 0>;
+
+type ExtractRoute<
+  T extends string,
+  PrevDashCount extends number,
+  Result extends [string, number][] = []
+> = T extends ''
+  ? Result
+  : ExtractName<T> extends [infer Word, infer Rest1]
+    ? CountLength<Rest1 & string> extends [infer DashCount, infer Rest2]
+      ? Word extends ''
+        ? ExtractRoute<Rest1 & string, PrevDashCount, Result>
+        : ExtractRoute<Rest2 & string, DashCount & number, [...Result, [Word & string, PrevDashCount]]>
+      : never
+    : never;
+
+type ExtractName<S extends string, Word extends string = ''> =
+  S extends `${infer Char}${infer Rest}`
+    ? Char extends '-'
+      ? Word extends ''
+        ? ExtractName<Rest, Word>
+        : [Word, `${Char}${Rest}`]
+      : ExtractName<Rest, `${Word}${Char}`>
+    : [Word, ''];
+
+type CountLength<S extends string, Count extends any[] = []> =
+  S extends `-${infer Rest}`
+    ? CountLength<Rest, ['🎅', ...Count]>
+    : [Count['length'], S];
 
 import type { Expect, Equal } from "type-testing";
 
